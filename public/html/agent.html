@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agent Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <h2>Agent Dashboard</h2>
+      <div class="status-indicator">
+        <span id="statusDot" class="status-dot status-available"></span>
+        <span id="agentStatus">Available</span>
+      </div>
+      <h3 style="font-size: 1em; margin-bottom: 10px;">Active Visitors</h3>
+      <ul id="visitorList"></ul>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div id="ringingNotification" class="ringing-notification">
+      <span id="ringingVisitorId"></span> is calling...
+      <button onclick="acceptCall()">Accept</button>
+    </div>
+
+    <!-- Queue Section -->
+    <div class="queue-section">
+      <div class="queue-header">Current Queue</div>
+      <div id="currentQueue">
+        <!-- Current visitor queue items will be injected here -->
+      </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button class="toggle-btn" onclick="toggleStatus()">Toggle Status</button>
+
+    <div class="chat-box">
+      <div id="messages" class="chat-messages"></div>
+      <div class="chat-input">
+        <input id="msgInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+        <button onclick="endChat()">End Chat</button>
+      </div>
+    </div>
+
+    <div id="availableAgents">
+      <h3>Available Agents</h3>
+      <ul id="agentList"></ul>
+    </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const username = localStorage.getItem('agentUser');
+    if (!username) window.location.href = '/login';
+
+    socket.emit('agent_join', username);
+
+    // Retrieve from localStorage
+    let currentVisitor = localStorage.getItem('currentVisitor');
+    let visitorMessages = JSON.parse(localStorage.getItem('visitorMessages')) || {};
+    let visitorQueue = JSON.parse(localStorage.getItem('visitorQueue')) || [];
+    let visitorInfo = JSON.parse(localStorage.getItem('visitorInfo')) || {}; // Store visitor info
+
+    console.log('Loaded data from localStorage: ', { currentVisitor, visitorMessages, visitorQueue, visitorInfo });
+
+    // Update localStorage whenever data changes
+    function updateLocalStorage() {
+      console.log('Updating localStorage with data: ', { currentVisitor, visitorMessages, visitorQueue, visitorInfo });
+      localStorage.setItem('visitorMessages', JSON.stringify(visitorMessages));
+      localStorage.setItem('visitorQueue', JSON.stringify(visitorQueue));
+      localStorage.setItem('visitorInfo', JSON.stringify(visitorInfo));
+      localStorage.setItem('currentVisitor', currentVisitor);
+    }
+
+    function updateVisitorList() {
+      const list = document.getElementById('visitorList');
+      list.innerHTML = '';
+      Object.keys(visitorMessages).forEach(visitorId => {
+        const li = document.createElement('li');
+        const visitor = visitorInfo[visitorId] || { name: 'Unknown', email: 'Unknown' };
+        li.innerHTML = `<strong>${visitor.name}</strong> (${visitor.email})`;
+        li.className = (visitorId === currentVisitor) ? 'active' : '';
+        li.onclick = () => switchToVisitor(visitorId);
+        list.appendChild(li);
+      });
+    }
+
+    function updateQueue() {
+      const queueDiv = document.getElementById('currentQueue');
+      queueDiv.innerHTML = '';
+      visitorQueue.forEach(visitorId => {
+        const visitor = visitorInfo[visitorId] || { name: 'Unknown', email: 'Unknown' };
+        const queueItem = document.createElement('div');
+        queueItem.classList.add('queue-item');
+        queueItem.innerHTML = `
+          <span><strong>${visitor.name}</strong> (${visitor.email})</span>
+          <button onclick="startChat('${visitorId}')">Start Chat</button>
+        `;
+        queueDiv.appendChild(queueItem);
+      });
+    }
+
+    function switchToVisitor(visitorId) {
+      currentVisitor = visitorId;
+      updateVisitorList();
+      localStorage.setItem('currentVisitor', visitorId); // Save to localStorage
+      const messages = visitorMessages[visitorId] || [];
+      const chatBox = document.getElementById('messages');
+      chatBox.innerHTML = '';
+      messages.forEach(({ type, content }) => {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message ' + type;
+        msgDiv.textContent = content;
+        chatBox.appendChild(msgDiv);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+      updateLocalStorage(); // Ensure localStorage is updated after switching visitor
+    }
+
+    function acceptCall() {
+      const visitorId = window.pendingVisitor;
+      if (!visitorMessages[visitorId]) {
+        visitorMessages[visitorId] = [];
+        currentVisitor = visitorId;
+        socket.emit('accept_visitor', { visitorId });
+        visitorQueue.splice(visitorQueue.indexOf(visitorId), 1);
+        updateQueue();
+        updateVisitorList();
+        switchToVisitor(visitorId);
+      }
+      document.getElementById('ringingNotification').style.display = 'none';
+      stopRingtone();
+    }
+
+    socket.on('incoming_call', ({ visitorId, visitorName, visitorEmail }) => {
+      if (!visitorMessages[visitorId]) {
+        visitorInfo[visitorId] = { name: visitorName, email: visitorEmail }; // Store visitor info
+        document.getElementById('ringingNotification').style.display = 'block';
+        document.getElementById('ringingVisitorId').textContent = visitorName;
+        window.pendingVisitor = visitorId;
+        visitorQueue.push(visitorId);
+        updateQueue();
+        playRingtone();
+        updateLocalStorage(); // Save visitor info to localStorage
+      }
+    });
+
+    function playRingtone() {
+      const audio = new Audio('/sounds/ringtone.mp3');
+      audio.loop = true;
+      audio.play();
+      window.ringtone = audio;
+    }
+
+    function stopRingtone() {
+      if (window.ringtone) {
+        window.ringtone.pause();
+        window.ringtone = null;
+      }
+    }
+
+    socket.on('new_message', ({ from, message, timestamp }) => {
+      if (!visitorMessages[from]) {
+        visitorMessages[from] = [];
+      }
+      const formatted = { type: 'visitor', content: `${from} (${timestamp}): ${message}` };
+      visitorMessages[from].push(formatted);
+
+      if (from === currentVisitor) {
+        const chatBox = document.getElementById('messages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message visitor';
+        msgDiv.textContent = formatted.content;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      updateVisitorList();
+      updateLocalStorage(); // Update localStorage with new messages
+    });
+
+    function sendMessage() {
+      const input = document.getElementById('msgInput');
+      const msg = input.value.trim();
+      if (msg && currentVisitor) {
+        const timestamp = new Date().toLocaleTimeString();
+        const formatted = { type: 'you', content: `You (${timestamp}): ${msg}` };
+
+        socket.emit('agent_message', { toVisitorId: currentVisitor, message: msg });
+        visitorMessages[currentVisitor].push(formatted);
+
+        const chatBox = document.getElementById('messages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message you';
+        msgDiv.textContent = formatted.content;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        input.value = '';
+        updateLocalStorage(); // Update localStorage after sending the message
+      }
+    }
+
+    function startChat(visitorId) {
+      currentVisitor = visitorId;
+      visitorMessages[visitorId] = visitorMessages[visitorId] || [];
+      socket.emit('start_chat', { visitorId });
+      visitorQueue.splice(visitorQueue.indexOf(visitorId), 1);  // Remove from queue
+      updateQueue();
+      updateVisitorList();
+      switchToVisitor(visitorId);  // Switch to the chat with this visitor
+    }
+
+    function endChat() {
+      if (currentVisitor) {
+        // Emit the end_chat event to the server
+        socket.emit('end_chat', currentVisitor);
+
+        // Clear messages for the current visitor
+        visitorMessages[currentVisitor] = [];
+
+        // Remove the current visitor from the active list
+        delete visitorMessages[currentVisitor];
+        delete visitorInfo[currentVisitor]; // Remove visitor info
+
+        // Reset the current visitor
+        currentVisitor = null;
+
+        // Update the visitor list and queue
+        updateVisitorList();
+        updateQueue();
+
+        // Clear the chat box
+        const chatBox = document.getElementById('messages');
+        chatBox.innerHTML = '';
+
+        // Update localStorage
+        updateLocalStorage();
+      }
+    }
+
+    function toggleStatus() {
+      const statusDot = document.getElementById('statusDot');
+      const agentStatus = document.getElementById('agentStatus');
+      if (statusDot.classList.contains('status-available')) {
+        statusDot.classList.remove('status-available');
+        statusDot.classList.add('status-away');
+        agentStatus.textContent = 'Away';
+      } else {
+        statusDot.classList.remove('status-away');
+        statusDot.classList.add('status-available');
+        agentStatus.textContent = 'Available';
+      }
+    }
+
+    socket.on('available_agents_update', ({ agents }) => {
+      const agentList = document.getElementById('agentList');
+      agentList.innerHTML = ''; // Clear the current list
+
+      agents.forEach(agent => {
+          const li = document.createElement('li');
+          li.textContent = agent.username;
+          agentList.appendChild(li);
+      });
+    });
+
+    // On page reload, restore visitor queue and messages from localStorage
+    window.onload = function () {
+      console.log('Page reloaded. Checking localStorage...');
+      updateQueue();
+      updateVisitorList();
+      if (currentVisitor) {
+        switchToVisitor(currentVisitor);
+      }
+    };
+  </script>
+</body>
+</html>

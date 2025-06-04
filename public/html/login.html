@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agent Login</title>
+</head>
+<body>
+  <h2>Agent Login</h2>
+  <input id="username" placeholder="Username" />
+  <input id="password" type="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+
+  <script>
+    function login() {
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          username: document.getElementById('username').value,
+          password: document.getElementById('password').value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem('agentUser', document.getElementById('username').value);
+          location.href = '/agent';
+        } else {
+          alert('Invalid login');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

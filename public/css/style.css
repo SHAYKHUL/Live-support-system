@@ -1,0 +1,458 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f4f8;
+    display: flex;
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 260px;
+    background: #1f2937;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .status-available {
+    background: #28a745;
+  }
+
+  .main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .ringing-notification {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: none;
+  }
+
+  .ringing-notification button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  .chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+  .chat-messages {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    background: #fafbfc;
+  }
+
+  .message {
+    margin-bottom: 15px;
+    max-width: 75%;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .message.visitor {
+    background: #e0e0e0;
+    align-self: flex-start;
+  }
+
+  .message.you {
+    background: #28a745;
+    color: white;
+    align-self: flex-end;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .chat-input button {
+    padding: 10px 20px;
+    background: #28a745;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .chat-input button:hover {
+    background: #218838;
+  }
+
+  ul#visitorList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  ul#visitorList li {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #374151;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+
+  ul#visitorList li.active {
+    background: #2563eb;
+  }
+
+  /* Current Queue section */
+  .queue-section {
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .queue-header {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .queue-item {
+    background: #e0e0e0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .queue-item span {
+    font-size: 14px;
+  }
+
+  .queue-item button {
+    padding: 5px 10px;
+    background: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Toggle button styles */
+  .toggle-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .toggle-btn:hover {
+    background-color: #1d4ed8;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .main-container {
+      padding: 10px;
+    }
+  }
+</style><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agent Dashboard</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f4f8;
+    display: flex;
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 260px;
+    background: #1f2937;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .status-available {
+    background: #28a745;
+  }
+
+  .main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .ringing-notification {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: none;
+  }
+
+  .ringing-notification button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  .chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+  .chat-messages {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    background: #fafbfc;
+  }
+
+  .message {
+    margin-bottom: 15px;
+    max-width: 75%;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .message.visitor {
+    background: #e0e0e0;
+    align-self: flex-start;
+  }
+
+  .message.you {
+    background: #28a745;
+    color: white;
+    align-self: flex-end;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .chat-input button {
+    padding: 10px 20px;
+    background: #28a745;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .chat-input button:hover {
+    background: #218838;
+  }
+
+  ul#visitorList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  ul#visitorList li {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #374151;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+
+  ul#visitorList li.active {
+    background: #2563eb;
+  }
+
+  /* Current Queue section */
+  .queue-section {
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .queue-header {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .queue-item {
+    background: #e0e0e0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .queue-item span {
+    font-size: 14px;
+  }
+
+  .queue-item button {
+    padding: 5px 10px;
+    background: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Toggle button styles */
+  .toggle-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .toggle-btn:hover {
+    background-color: #1d4ed8;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .main-container {
+      padding: 10px;
+    }
+  }

@@ -1,0 +1,88 @@
+{"level":"info","message":"Socket connected: 3ewSb4FVTX_x_te4AAAB","timestamp":"2025-06-04T05:19:54.649Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:19:54.688Z"}
+{"level":"info","message":"Socket connected: lizQfleEjZhYJTuaAAAD","timestamp":"2025-06-04T05:20:02.324Z"}
+{"level":"info","message":"Disconnected: lizQfleEjZhYJTuaAAAD","timestamp":"2025-06-04T05:20:10.657Z"}
+{"level":"info","message":"Socket connected: TrHCI5h6CUZ_rYuCAAAF","timestamp":"2025-06-04T05:20:10.828Z"}
+{"level":"warn","message":"No agent assigned to visitor c03fe91f-4316-461c-b207-2f1a8d94f21f","timestamp":"2025-06-04T05:20:14.340Z"}
+{"level":"info","message":"Disconnected: TrHCI5h6CUZ_rYuCAAAF","timestamp":"2025-06-04T05:20:31.611Z"}
+{"level":"info","message":"Socket connected: LsV2xIMoeFEnnxm8AAAH","timestamp":"2025-06-04T05:20:31.782Z"}
+{"level":"info","message":"Visitor visitor_1749014424277_5bhntubkc assigned to agent 3ewSb4FVTX_x_te4AAAB.","timestamp":"2025-06-04T05:20:36.498Z"}
+{"level":"info","message":"Visitor visitor_1749014424277_5bhntubkc assigned to agent 3ewSb4FVTX_x_te4AAAB.","timestamp":"2025-06-04T05:20:36.498Z"}
+{"level":"info","message":"Message sent from agent agent1 to visitor visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:20:40.785Z"}
+{"level":"info","message":"Disconnected: LsV2xIMoeFEnnxm8AAAH","timestamp":"2025-06-04T05:22:07.168Z"}
+{"level":"info","message":"Socket connected: 1VvhwzhwZ7CbItuxAAAJ","timestamp":"2025-06-04T05:22:07.356Z"}
+{"level":"info","message":"Disconnected: 1VvhwzhwZ7CbItuxAAAJ","timestamp":"2025-06-04T05:22:24.998Z"}
+{"level":"info","message":"Socket connected: 7fvjpAzs8St77xLcAAAL","timestamp":"2025-06-04T05:22:25.210Z"}
+{"level":"info","message":"Disconnected: 3ewSb4FVTX_x_te4AAAB","timestamp":"2025-06-04T05:22:29.176Z"}
+{"level":"info","message":"Socket connected: ngMnMxz8rfrKN3PnAAAN","timestamp":"2025-06-04T05:22:29.360Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:22:29.396Z"}
+{"level":"info","message":"Disconnected: ngMnMxz8rfrKN3PnAAAN","timestamp":"2025-06-04T05:22:29.537Z"}
+{"level":"info","message":"Socket connected: WstktA6GXBlXA6FWAAAP","timestamp":"2025-06-04T05:22:29.748Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:22:29.772Z"}
+{"level":"info","message":"Disconnected: WstktA6GXBlXA6FWAAAP","timestamp":"2025-06-04T05:22:29.862Z"}
+{"level":"info","message":"Socket connected: PE9z4efdDaQwhOOkAAAR","timestamp":"2025-06-04T05:22:30.037Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:22:30.054Z"}
+{"level":"info","message":"Disconnected: PE9z4efdDaQwhOOkAAAR","timestamp":"2025-06-04T05:22:30.103Z"}
+{"level":"info","message":"Socket connected: 1cpGi9y-Yemm_OfnAAAT","timestamp":"2025-06-04T05:22:30.330Z"}
+{"level":"info","message":"Disconnected: 1cpGi9y-Yemm_OfnAAAT","timestamp":"2025-06-04T05:22:30.375Z"}
+{"level":"info","message":"Socket connected: NeLnl_o6Z7ykvDMaAAAV","timestamp":"2025-06-04T05:22:30.561Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:22:30.587Z"}
+{"level":"info","message":"Socket connected: KSPCr_fd05Cy1fn4AAAB","timestamp":"2025-06-04T05:22:38.615Z"}
+{"level":"info","message":"Socket connected: B9_dWCkjN70dKqHOAAAD","timestamp":"2025-06-04T05:22:40.952Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:22:40.996Z"}
+{"level":"info","message":"Disconnected: KSPCr_fd05Cy1fn4AAAB","timestamp":"2025-06-04T05:22:43.514Z"}
+{"level":"info","message":"Socket connected: N9r3Dv3BQtCrCEqdAAAF","timestamp":"2025-06-04T05:22:43.678Z"}
+{"level":"info","message":"Disconnected: N9r3Dv3BQtCrCEqdAAAF","timestamp":"2025-06-04T05:22:44.592Z"}
+{"level":"info","message":"Socket connected: qWj5WcvyX97EndslAAAH","timestamp":"2025-06-04T05:22:44.788Z"}
+{"level":"info","message":"Disconnected: qWj5WcvyX97EndslAAAH","timestamp":"2025-06-04T05:22:44.861Z"}
+{"level":"info","message":"Socket connected: 6U44cQLVMdiy-KwIAAAJ","timestamp":"2025-06-04T05:22:45.035Z"}
+{"level":"info","message":"Socket connected: VHjToZUdWbNRKYEjAAAL","timestamp":"2025-06-04T05:22:59.485Z"}
+{"level":"info","message":"Visitor visitor_1749014586957_wznq4bt0w assigned to agent B9_dWCkjN70dKqHOAAAD.","timestamp":"2025-06-04T05:23:16.392Z"}
+{"level":"info","message":"Visitor visitor_1749014586957_wznq4bt0w assigned to agent B9_dWCkjN70dKqHOAAAD.","timestamp":"2025-06-04T05:23:16.393Z"}
+{"level":"info","message":"Chat session ended: agent=B9_dWCkjN70dKqHOAAAD, visitor=visitor_1749014586957_wznq4bt0w","timestamp":"2025-06-04T05:23:23.206Z"}
+{"level":"warn","message":"Unauthorized end_chat attempt: agent=B9_dWCkjN70dKqHOAAAD, visitor=visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:23:26.213Z"}
+{"level":"warn","message":"Unauthorized end_chat attempt: agent=B9_dWCkjN70dKqHOAAAD, visitor=visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:23:30.269Z"}
+{"level":"info","message":"Disconnected: 6U44cQLVMdiy-KwIAAAJ","timestamp":"2025-06-04T05:23:32.899Z"}
+{"level":"info","message":"Disconnected: B9_dWCkjN70dKqHOAAAD","timestamp":"2025-06-04T05:23:32.901Z"}
+{"level":"info","message":"Disconnected: VHjToZUdWbNRKYEjAAAL","timestamp":"2025-06-04T05:23:37.460Z"}
+{"level":"info","message":"Socket connected: dVWjaGf-UFJcdQ1XAAAN","timestamp":"2025-06-04T05:24:14.636Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:24:14.665Z"}
+{"level":"warn","message":"Failed to assign visitor: agent=dVWjaGf-UFJcdQ1XAAAN, visitor=visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:24:14.666Z"}
+{"level":"info","message":"Socket connected: S8mkbMzhifLiLODnAAAP","timestamp":"2025-06-04T05:24:37.627Z"}
+{"level":"info","message":"Visitor visitor_1749014424277_5bhntubkc assigned to agent dVWjaGf-UFJcdQ1XAAAN.","timestamp":"2025-06-04T05:24:55.446Z"}
+{"level":"info","message":"Visitor visitor_1749014424277_5bhntubkc assigned to agent dVWjaGf-UFJcdQ1XAAAN.","timestamp":"2025-06-04T05:24:55.447Z"}
+{"level":"info","message":"Message sent from agent agent1 to visitor visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:25:52.699Z"}
+{"level":"info","message":"Disconnected: S8mkbMzhifLiLODnAAAP","timestamp":"2025-06-04T05:27:25.794Z"}
+{"level":"info","message":"Socket connected: BL0NyWYdCUrWJybAAAAR","timestamp":"2025-06-04T05:27:26.007Z"}
+{"level":"info","message":"Disconnected: BL0NyWYdCUrWJybAAAAR","timestamp":"2025-06-04T05:27:32.224Z"}
+{"level":"info","message":"Socket connected: 7_RL7syo8ieBU7d4AAAT","timestamp":"2025-06-04T05:27:32.418Z"}
+{"level":"info","message":"Disconnected: dVWjaGf-UFJcdQ1XAAAN","timestamp":"2025-06-04T05:27:39.584Z"}
+{"level":"info","message":"Socket connected: 8_MGUjLGE9k0fg4OAAAV","timestamp":"2025-06-04T05:27:39.793Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:27:39.838Z"}
+{"level":"info","message":"Message sent from agent agent1 to visitor visitor_1749014424277_5bhntubkc","timestamp":"2025-06-04T05:27:42.390Z"}
+{"level":"info","message":"Disconnected: 7_RL7syo8ieBU7d4AAAT","timestamp":"2025-06-04T05:28:05.904Z"}
+{"level":"info","message":"Socket connected: Nel9dMJlBmI3Pc36AAAX","timestamp":"2025-06-04T05:28:06.087Z"}
+{"level":"info","message":"Disconnected: 8_MGUjLGE9k0fg4OAAAV","timestamp":"2025-06-04T05:28:55.888Z"}
+{"level":"info","message":"Socket connected: 9_-bZGV9UcdTwsqEAAAZ","timestamp":"2025-06-04T05:28:56.067Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:28:56.099Z"}
+{"level":"info","message":"Visitor visitor_1749014424277_5bhntubkc assigned to agent 9_-bZGV9UcdTwsqEAAAZ.","timestamp":"2025-06-04T05:28:56.099Z"}
+{"level":"info","message":"Disconnected: 9_-bZGV9UcdTwsqEAAAZ","timestamp":"2025-06-04T05:31:27.258Z"}
+{"level":"info","message":"Socket connected: dRX7MLKQynuIVuSxAAAb","timestamp":"2025-06-04T05:31:44.905Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:31:44.930Z"}
+{"level":"info","message":"Disconnected: dRX7MLKQynuIVuSxAAAb","timestamp":"2025-06-04T05:33:55.507Z"}
+{"level":"info","message":"Socket connected: -73OJ_ywI4z3FC0iAAAd","timestamp":"2025-06-04T05:33:55.665Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:33:55.688Z"}
+{"level":"info","message":"Disconnected: -73OJ_ywI4z3FC0iAAAd","timestamp":"2025-06-04T05:35:19.435Z"}
+{"level":"info","message":"Socket connected: -07KA2dWYcM3rdh9AAAf","timestamp":"2025-06-04T05:35:19.623Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:35:19.649Z"}
+{"level":"info","message":"Disconnected: -07KA2dWYcM3rdh9AAAf","timestamp":"2025-06-04T05:35:29.874Z"}
+{"level":"info","message":"Socket connected: 58iDpOqTkQSMBpm0AAAh","timestamp":"2025-06-04T05:35:30.048Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:35:30.073Z"}
+{"level":"info","message":"Socket connected: NVa7PYkdVrwnuf8QAAAB","timestamp":"2025-06-04T05:36:41.653Z"}
+{"level":"info","message":"Agent agent1 joined","timestamp":"2025-06-04T05:36:41.685Z"}
+{"level":"info","message":"Socket connected: 81O_ovGLsRlFG_ddAAAD","timestamp":"2025-06-04T05:36:48.251Z"}
+{"level":"info","message":"Visitor visitor_1749015412755_tm0j8qc4o assigned to agent NVa7PYkdVrwnuf8QAAAB.","timestamp":"2025-06-04T05:37:00.974Z"}
+{"level":"info","message":"Visitor visitor_1749015412755_tm0j8qc4o assigned to agent NVa7PYkdVrwnuf8QAAAB.","timestamp":"2025-06-04T05:37:00.975Z"}
+{"level":"info","message":"Message sent from agent agent1 to visitor visitor_1749015412755_tm0j8qc4o","timestamp":"2025-06-04T05:37:09.668Z"}
+{"level":"info","message":"Disconnected: 81O_ovGLsRlFG_ddAAAD","timestamp":"2025-06-04T05:39:30.515Z"}
+{"level":"info","message":"Disconnected: NVa7PYkdVrwnuf8QAAAB","timestamp":"2025-06-04T05:39:30.517Z"}
